@@ -1,5 +1,5 @@
 <?php
-  //========EDIT BELOW============//
+        //========EDIT BELOW============//
 	$logfile = "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Logs/Plex Media Server.log";
 	$lookuphostname = true;
 	//========STOP EDDITING=========//
@@ -28,7 +28,7 @@
 		{
 			$hostname = gethostbyaddr($ip); 
 		}
-		$lasttime = getLastPacketTime($ip);
+		$lasttime = getLastPacketTime($ip,$logfile);
 		$elapsedseconds = time() - $lasttime;
 		$elapsedtime = time_since($elapsedseconds);
 
@@ -38,7 +38,7 @@
 	usort($out, "sortByTimeStamp");
 	echo formatOutput($out);
 	exit;
-	function getLastPacketTime($ip)
+	function getLastPacketTime($ip,$logfile)
 	{
 		return timestampFromDate(getDateFromString(shell_exec("grep -r 'Request: GET /video/:/transcode.*".$ip."' \"".$logfile."\"| tail -1")));
 	}
