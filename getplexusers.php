@@ -119,7 +119,7 @@
         	}
         	else
         	{
-                	$outstring = json_encode($inarray);
+                        $outstring =  "<pre>" . print_r($inarray, TRUE) . "</pre>";
         	}
 		return $outstring;
 	}
